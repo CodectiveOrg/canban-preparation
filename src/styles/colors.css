@@ -77,4 +77,5 @@
   --color-primary-light: var(--color-blue-6);
   --color-primary: var(--color-blue-8);
   --color-primary-dark: var(--color-blue-9);
+  --color-primary-contrast: var(--color-white);
 }

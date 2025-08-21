@@ -7,7 +7,10 @@ export default function App(): ReactNode {
     <div className="app">
       <header>Header</header>
       <main>
-        <h1>Boards</h1>
+        <div className="header">
+          <h1 className="title">Boards</h1>
+          <button>Create</button>
+        </div>
         <ul>
           <li>
             <div className="board">

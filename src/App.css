@@ -5,7 +5,31 @@
   min-block-size: 100dvh;
 
   > main {
-    h1 {
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+
+      margin-block-end: 0.5rem;
+
+      button {
+        background-color: var(--color-primary);
+        color: var(--color-primary-contrast);
+
+        padding: 0.5rem 1rem;
+
+        border: none;
+        border-radius: var(--border-radius-1);
+
+        text-transform: uppercase;
+
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--color-primary-dark);
+        }
+      }
     }
 
     > ul {
@@ -24,7 +48,7 @@
 
           padding: 1rem;
 
-          border-radius: var(--border-radius);
+          border-radius: var(--border-radius-2);
 
           .header {
             display: flex;
@@ -37,9 +61,6 @@
             .title {
               font-size: var(--fz-500);
               font-weight: 700;
-            }
-
-            a {
             }
           }
 
