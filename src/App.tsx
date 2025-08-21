@@ -2,18 +2,18 @@ import { type ReactNode } from "react";
 
 import BoardCard from "@/components/BoardCard/BoardCard.tsx";
 
-import "./App.css";
+import styles from "./App.module.css";
 
 export default function App(): ReactNode {
   return (
-    <div className="app">
+    <div className={styles.app}>
       <header>Header</header>
       <main>
-        <div className="header">
-          <h1 className="title">Boards</h1>
+        <div className={styles.header}>
+          <h1 className={styles.title}>Boards</h1>
           <button>Create</button>
         </div>
-        <ul className="boards">
+        <ul className={styles.boards}>
           <li>
             <BoardCard
               id={1}
