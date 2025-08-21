@@ -1,5 +1,7 @@
 import { type ReactNode } from "react";
 
+import BoardCard from "@/components/BoardCard/BoardCard.tsx";
+
 import "./App.css";
 
 export default function App(): ReactNode {
@@ -11,39 +13,27 @@ export default function App(): ReactNode {
           <h1 className="title">Boards</h1>
           <button>Create</button>
         </div>
-        <ul>
+        <ul className="boards">
           <li>
-            <div className="board">
-              <div className="header">
-                <div className="title">Board 1</div>
-                <a href="/board/1">View</a>
-              </div>
-              <p className="description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Aperiam, at.
-              </p>
-            </div>
+            <BoardCard
+              id={1}
+              title="Sprint Tasks"
+              description="A board to keep track of the team's work during each sprint. Tasks move from To Do through In Progress until they reach Done."
+            />
           </li>
           <li>
-            <div className="board">
-              <div className="header">
-                <div className="title">Board 2</div>
-                <a href="/board/2">View</a>
-              </div>
-              <p className="description">
-                Corporis maxime officia quo sunt? Ad blanditiis consectetur
-                consequuntur dicta enim error eveniet explicabo ipsa ipsum
-              </p>
-            </div>
+            <BoardCard
+              id={2}
+              title="Content Calendar"
+              description="Plan and manage posts, blogs, or videos ahead of time. Items flow from Idea to Draft and finally to Published for a smooth content pipeline."
+            />
           </li>
           <li>
-            <div className="board">
-              <div className="header">
-                <div className="title">Board 3</div>
-                <a href="/board/3">View</a>
-              </div>
-              <p className="description">doloribus ex id natus vel!</p>
-            </div>
+            <BoardCard
+              id={3}
+              title="Personal Goals"
+              description="Organize personal or professional goals into small tasks."
+            />
           </li>
         </ul>
       </main>
