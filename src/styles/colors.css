@@ -79,3 +79,27 @@
   --color-primary-dark: var(--color-blue-9);
   --color-primary-contrast: var(--color-white);
 }
+
+.gray {
+  --color-main: var(--color-gray-6);
+}
+
+.blue {
+  --color-main: var(--color-blue-6);
+}
+
+.green {
+  --color-main: var(--color-green-6);
+}
+
+.yellow {
+  --color-main: var(--color-yellow-6);
+}
+
+.orange {
+  --color-main: var(--color-orange-6);
+}
+
+.red {
+  --color-main: var(--color-red-6);
+}

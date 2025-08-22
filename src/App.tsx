@@ -20,6 +20,7 @@ export default function App(): ReactNode {
               id={1}
               title="Sprint Tasks"
               description="A board to keep track of the team's work during each sprint. Tasks move from To Do through In Progress until they reach Done."
+              color="blue"
             />
           </li>
           <li>
@@ -27,6 +28,7 @@ export default function App(): ReactNode {
               id={2}
               title="Content Calendar"
               description="Plan and manage posts, blogs, or videos ahead of time. Items flow from Idea to Draft and finally to Published for a smooth content pipeline."
+              color="gray"
             />
           </li>
           <li>
@@ -34,6 +36,7 @@ export default function App(): ReactNode {
               id={3}
               title="Personal Goals"
               description="Organize personal or professional goals into small tasks."
+              color="yellow"
             />
           </li>
         </ul>
