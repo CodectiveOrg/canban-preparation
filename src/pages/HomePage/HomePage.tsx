@@ -9,7 +9,7 @@ import styles from "./HomePage.module.css";
 
 export default function HomePage(): ReactNode {
   return (
-    <div className={styles.home}>
+    <div className={styles["home-page"]}>
       <Header />
       <main>
         <div className={styles.header}>
