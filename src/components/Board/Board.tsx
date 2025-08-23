@@ -22,62 +22,60 @@ export default function Board(): ReactNode {
           </IconButton>
         </div>
       </div>
-      <div className={styles.scroller}>
-        <ul className={styles.lists}>
-          <li>
-            <div className={styles.list}>
-              <div className={styles.header}>
-                <div className={styles.title}>🔜 To Do</div>
-                <IconButton>
-                  <MingcuteMore1Line />
-                </IconButton>
-              </div>
-              <ul className={styles.items}>
-                <li>
-                  <div className={styles.item}>Setup Backend Project</div>
-                </li>
-                <li>
-                  <div className={styles.item}>
-                    Find a Good Name for the Project
-                  </div>
-                </li>
-                <li>
-                  <div className={styles.item}>Implement Landing Page</div>
-                </li>
-              </ul>
+      <ul className={styles.lists}>
+        <li>
+          <div className={styles.list}>
+            <div className={styles.header}>
+              <div className={styles.title}>🔜 To Do</div>
+              <IconButton>
+                <MingcuteMore1Line />
+              </IconButton>
             </div>
-          </li>
-          <li>
-            <div className={styles.list}>
-              <div className={styles.header}>
-                <div className={styles.title}>🔨 Doing</div>
-                <IconButton>
-                  <MingcuteMore1Line />
-                </IconButton>
-              </div>
-              <ul className={styles.items}>
-                <li>
-                  <div className={styles.item}>Setup Frontend Project</div>
-                </li>
-                <li>
-                  <div className={styles.item}>Design Landing Page</div>
-                </li>
-              </ul>
+            <ul className={styles.items}>
+              <li>
+                <div className={styles.item}>Setup Backend Project</div>
+              </li>
+              <li>
+                <div className={styles.item}>
+                  Find a Good Name for the Project
+                </div>
+              </li>
+              <li>
+                <div className={styles.item}>Implement Landing Page</div>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div className={styles.list}>
+            <div className={styles.header}>
+              <div className={styles.title}>🔨 Doing</div>
+              <IconButton>
+                <MingcuteMore1Line />
+              </IconButton>
             </div>
-          </li>
-          <li>
-            <div className={styles.list}>
-              <div className={styles.header}>
-                <div className={styles.title}>🎉 Done</div>
-                <IconButton>
-                  <MingcuteMore1Line />
-                </IconButton>
-              </div>
-              <ul className={styles.items}></ul>
+            <ul className={styles.items}>
+              <li>
+                <div className={styles.item}>Setup Frontend Project</div>
+              </li>
+              <li>
+                <div className={styles.item}>Design Landing Page</div>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div className={styles.list}>
+            <div className={styles.header}>
+              <div className={styles.title}>🎉 Done</div>
+              <IconButton>
+                <MingcuteMore1Line />
+              </IconButton>
             </div>
-          </li>
-        </ul>
-      </div>
+            <ul className={styles.items}></ul>
+          </div>
+        </li>
+      </ul>
     </div>
   );
 }

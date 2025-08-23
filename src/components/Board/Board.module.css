@@ -29,59 +29,57 @@
     }
   }
 
-  .scroller {
+  .lists {
     overflow: auto;
+
+    display: flex;
+    gap: 1rem;
+
+    block-size: 100%;
 
     padding-block-end: 0.5rem;
 
-    .lists {
-      display: flex;
-      gap: 1rem;
+    > li {
+      .list {
+        background-color: var(--color-surface-2);
+        box-shadow: var(--shadow-2);
 
-      block-size: 100%;
+        display: grid;
+        grid-template-rows: auto 1fr;
 
-      > li {
-        .list {
-          background-color: var(--color-surface-2);
-          box-shadow: var(--shadow-2);
+        max-block-size: 100%;
+
+        padding-block-end: 1rem;
+
+        border-radius: var(--border-radius-2);
+
+        inline-size: 20rem;
+
+        .header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+
+          padding: 1rem 1rem 0.5rem;
+        }
+
+        .items {
+          overflow: auto;
 
           display: grid;
-          grid-template-rows: auto 1fr;
+          gap: 0.5rem;
 
-          max-block-size: 100%;
+          padding: 0.25rem 1rem 0.5rem;
 
-          padding-block-end: 1rem;
+          > li {
+            .item {
+              background-color: var(--color-surface-3);
+              box-shadow: var(--shadow-2);
 
-          border-radius: var(--border-radius-2);
+              padding: 0.5rem;
 
-          inline-size: 20rem;
-
-          .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-
-            padding: 1rem 1rem 0.5rem;
-          }
-
-          .items {
-            overflow: auto;
-
-            display: grid;
-            gap: 0.5rem;
-
-            padding: 0.25rem 1rem 0.5rem;
-
-            > li {
-              .item {
-                background-color: var(--color-surface-3);
-                box-shadow: var(--shadow-2);
-
-                padding: 0.5rem;
-
-                border-radius: var(--border-radius-2);
-              }
+              border-radius: var(--border-radius-2);
             }
           }
         }
