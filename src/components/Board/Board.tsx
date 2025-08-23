@@ -21,7 +21,7 @@ export default function Board(): ReactNode {
     ],
   });
 
-  const [doingList, setDoingList] = useState<ListType>({
+  const [doingList] = useState<ListType>({
     id: "2",
     title: "🔨 Doing",
     items: [
@@ -29,7 +29,7 @@ export default function Board(): ReactNode {
       { id: "5", title: "Design Landing Page" },
     ],
   });
-  const [doneList, setDoneList] = useState<ListType>({
+  const [doneList] = useState<ListType>({
     id: "3",
     title: "🎉 Done",
     items: [],
