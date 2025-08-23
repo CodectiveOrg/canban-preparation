@@ -5,7 +5,7 @@
 
   block-size: 100%;
 
-  > .header {
+  .toolbar {
     background-color: var(--color-surface-2);
     box-shadow: var(--shadow-2);
 
