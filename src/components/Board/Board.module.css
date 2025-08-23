@@ -41,14 +41,12 @@
       block-size: 100%;
 
       > li {
-        flex: 0 0 auto;
-
         .list {
           background-color: var(--color-surface-2);
           box-shadow: var(--shadow-2);
 
           display: grid;
-          grid-template-rows: auto minmax(0, 1fr);
+          grid-template-rows: auto 1fr;
 
           max-block-size: 100%;
 
@@ -82,7 +80,6 @@
 
                 padding: 0.5rem;
 
-                border: 1px solid var(--color-gray-0);
                 border-radius: var(--border-radius-2);
               }
             }
