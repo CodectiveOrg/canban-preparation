@@ -35,12 +35,20 @@ export default function Board(): ReactNode {
     items: [],
   });
 
+  const HandlerEditButtonClick = (): void => {
+    setTodoList((old) => {
+      const clone = [...old.items];
+      clone.splice(1, 1);
+      return { ...old, items: clone };
+    });
+  };
+
   return (
     <div className={styles.board}>
       <div className={styles.header}>
         <div className={styles.title}>Board Title</div>
         <div className={styles.actions}>
-          <IconButton>
+          <IconButton onClick={HandlerEditButtonClick}>
             <MingcuteEdit2Line />
           </IconButton>
           <IconButton>
