@@ -10,6 +10,7 @@ type Props = ComponentProps<"button"> & {
 };
 
 export default function Button({
+  className,
   variant = "solid",
   color = "default",
   children,
@@ -17,7 +18,7 @@ export default function Button({
 }: Props): ReactNode {
   return (
     <button
-      className={clsx(styles.button, styles[variant], styles[color])}
+      className={clsx(styles.button, styles[variant], styles[color], className)}
       {...otherProps}
     >
       {children}

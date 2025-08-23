@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import BoardCard from "@/components/BoardCard/BoardCard.tsx";
 import Button from "@/components/Button/Button.tsx";
@@ -9,7 +9,7 @@ export default function HomePage(): ReactNode {
   return (
     <div className={styles["home-page"]}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Boards</h1>
+        <h1>Boards</h1>
         <Button color="primary">Create</Button>
       </div>
       <ul className={styles.boards}>

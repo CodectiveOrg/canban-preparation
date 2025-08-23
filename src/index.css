@@ -11,10 +11,24 @@ html {
   font-family: "Vazirmatn", sans-serif;
 }
 
+input,
+label,
+select,
+textarea,
+button,
+fieldset,
+legend,
+datalist,
+output,
+option,
+optgroup {
+  font: inherit;
+}
+
 body {
   background-color: var(--color-surface-1);
 
-  inline-size: min(75rem, 100%);
+  inline-size: min(75rem, 100% - 2rem);
 
   margin-inline: auto;
 
