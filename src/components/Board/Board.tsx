@@ -1,4 +1,4 @@
-import { type ReactNode, useMemo, useState } from "react";
+import { type ReactNode, useCallback, useState } from "react";
 
 import IconButton from "@/components/IconButton/IconButton.tsx";
 import List from "@/components/List/List.tsx";
@@ -6,14 +6,9 @@ import List from "@/components/List/List.tsx";
 import MingcuteAddLine from "@/icons/MingcuteAddLine.tsx";
 import MingcuteEdit2Line from "@/icons/MingcuteEdit2Line.tsx";
 
-import type { ListItemType } from "@/types/list-item.ts";
 import type { ListType } from "@/types/list.ts";
 
 import styles from "./Board.module.css";
-
-function cb(a: ListItemType, b: ListItemType): number {
-  return a.title.localeCompare(b.title);
-}
 
 export default function Board(): ReactNode {
   const [todoList, setTodoList] = useState<ListType>({
@@ -41,18 +36,6 @@ export default function Board(): ReactNode {
     items: [],
   });
 
-  const sortedTodoList = useMemo(() => {
-    return { ...todoList, items: todoList.items.sort(cb) };
-  }, [todoList]);
-
-  const sortedDoingList = useMemo(() => {
-    return { ...doingList, items: doingList.items.sort(cb) };
-  }, [doingList]);
-
-  const sortedDoneList = useMemo(() => {
-    return { ...doneList, items: doneList.items.sort(cb) };
-  }, [doneList]);
-
   const handleEditButtonClick = (): void => {
     setTodoList((old) => {
       const clone = [...old.items];
@@ -60,6 +43,13 @@ export default function Board(): ReactNode {
       return { ...old, items: clone };
     });
   };
+
+  const handleListItemClick = useCallback((id: string): void => {
+    setTodoList((old) => ({
+      ...old,
+      items: old.items.filter((item) => item.id !== id),
+    }));
+  }, []);
 
   return (
     <div className={styles.board}>
@@ -76,13 +66,13 @@ export default function Board(): ReactNode {
       </div>
       <ul className={styles.lists}>
         <li>
-          <List list={sortedTodoList} />
+          <List list={todoList} onClick={handleListItemClick} />
         </li>
         <li>
-          <List list={sortedDoingList} />
+          <List list={doingList} onClick={handleListItemClick} />
         </li>
         <li>
-          <List list={sortedDoneList} />
+          <List list={doneList} onClick={handleListItemClick} />
         </li>
       </ul>
     </div>
