@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { type ReactNode, memo } from "react";
 
 import IconButton from "@/components/IconButton/IconButton.tsx";
 import ListItem from "@/components/ListItem/ListItem.tsx";
@@ -13,7 +13,9 @@ type Props = {
   list: ListType;
 };
 
-export default function List({ list }: Props): ReactNode {
+const List = memo(function List({ list }: Props): ReactNode {
+  console.log(list.title);
+
   return (
     <div className={styles.list}>
       <div className={styles.header}>
@@ -31,4 +33,6 @@ export default function List({ list }: Props): ReactNode {
       </ul>
     </div>
   );
-}
+});
+
+export default List;
