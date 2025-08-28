@@ -1,4 +1,4 @@
-import { type ReactNode, useCallback, useState } from "react";
+import { type ReactNode, useCallback, useMemo, useState } from "react";
 
 import { listsData } from "@/data/lists-data.ts";
 
@@ -103,6 +103,9 @@ export default function Board(): ReactNode {
     });
   };
 
+  const editIcon = useMemo(() => <MingcuteEdit2Line />, []);
+  const addIcon = useMemo(() => <MingcuteAddLine />, []);
+
   return (
     <div className={styles.board}>
       <div className={styles.toolbar}>
@@ -123,12 +126,8 @@ export default function Board(): ReactNode {
               <Button onClick={handleRemoveButtonClick}>Remove</Button>
             </div>
           )}
-          <IconButton>
-            <MingcuteEdit2Line />
-          </IconButton>
-          <IconButton>
-            <MingcuteAddLine />
-          </IconButton>
+          <IconButton>{editIcon}</IconButton>
+          <IconButton>{addIcon}</IconButton>
         </div>
       </div>
       <ul className={styles.lists}>
