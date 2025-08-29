@@ -22,6 +22,8 @@ function save(lists: ListType[]): void {
 }
 
 function load(): ListType[] {
+  console.log("load");
+
   const item = localStorage.getItem("lists");
   if (!item) {
     return [];
@@ -37,6 +39,7 @@ export default function Board(): ReactNode {
   const [activeItemId, setActiveItemId] = useState<string | null>(null);
 
   useEffect(() => {
+    console.log("useEffect");
     save(lists);
   }, [lists]);
 
@@ -147,7 +150,10 @@ export default function Board(): ReactNode {
     });
   }, [activeItemId, activeListId]);
 
-  const editIcon = useMemo(() => <MingcuteEdit2Line />, []);
+  const editIcon = useMemo(() => {
+    console.log("useMemo");
+    return <MingcuteEdit2Line />;
+  }, []);
   const addIcon = useMemo(() => <MingcuteAddLine />, []);
 
   return (
