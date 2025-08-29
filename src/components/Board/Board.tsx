@@ -44,14 +44,22 @@ export default function Board(): ReactNode {
   }, [lists]);
 
   useEffect(() => {
-    document.addEventListener("keydown", (e) => {
+    const handleDocumentKeydown = (e: KeyboardEvent): void => {
+      console.log("check dismiss");
+
       if (e.code !== "Escape") {
         return;
       }
 
       setActiveListId(null);
       setActiveItemId(null);
-    });
+    };
+
+    document.addEventListener("keydown", handleDocumentKeydown);
+
+    return (): void => {
+      document.removeEventListener("keydown", handleDocumentKeydown);
+    };
   }, []);
 
   const handleListItemClick = useCallback(
