@@ -1,4 +1,10 @@
-import { type ReactNode, useCallback, useMemo, useState } from "react";
+import {
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import Button from "@/components/Button/Button.tsx";
 import IconButton from "@/components/IconButton/IconButton.tsx";
@@ -30,6 +36,10 @@ export default function Board(): ReactNode {
   const [activeListId, setActiveListId] = useState<string | null>(null);
   const [activeItemId, setActiveItemId] = useState<string | null>(null);
 
+  useEffect(() => {
+    save(lists);
+  }, [lists]);
+
   const handleListItemClick = useCallback(
     (listId: string, itemId: string): void => {
       setActiveListId(listId);
@@ -45,7 +55,6 @@ export default function Board(): ReactNode {
       const id = globalThis.crypto.randomUUID();
       clone[0] = { ...clone[0], items: [...clone[0].items, { id, title: id }] };
 
-      save(clone);
       return clone;
     });
   };
@@ -90,7 +99,6 @@ export default function Board(): ReactNode {
 
           clone[activeListIndex] = activeList;
           clone[destinationListIndex] = destinationList;
-          save(clone);
           return clone;
         } finally {
           setActiveListId(null);
@@ -131,7 +139,6 @@ export default function Board(): ReactNode {
         activeList.items.splice(activeItemIndex, 1);
 
         clone[activeListIndex] = activeList;
-        save(clone);
         return clone;
       } finally {
         setActiveListId(null);
