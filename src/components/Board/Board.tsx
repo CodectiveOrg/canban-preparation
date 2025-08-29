@@ -27,48 +27,57 @@ export default function Board(): ReactNode {
     [],
   );
 
-  const handleMoveButtonClick = (listId: string): void => {
-    setLists((old) => {
-      try {
-        const activeListIndex = old.findIndex(
-          (list) => list.id === activeListId,
-        );
-        const destinationListIndex = old.findIndex(
-          (list) => list.id === listId,
-        );
+  const handleMoveButtonClick = useCallback(
+    (destinationListId: string): void => {
+      setLists((old) => {
+        try {
+          const activeListIndex = old.findIndex(
+            (list) => list.id === activeListId,
+          );
+          const destinationListIndex = old.findIndex(
+            (list) => list.id === destinationListId,
+          );
 
-        if (activeListIndex === -1 || destinationListIndex === -1) {
-          console.error("Cannot find desired lists.");
-          return old;
+          if (activeListIndex === -1 || destinationListIndex === -1) {
+            console.error("Cannot find desired list.");
+            return old;
+          }
+
+          const clone = [...old];
+          const activeList = {
+            ...clone[activeListIndex],
+            items: [...clone[activeListIndex].items],
+          };
+          const destinationList = {
+            ...clone[destinationListIndex],
+            items: [...clone[destinationListIndex].items],
+          };
+
+          const activeItemIndex = activeList.items.findIndex(
+            (item) => item.id === activeItemId,
+          );
+
+          if (activeItemIndex === -1) {
+            console.error("Cannot find desired item.");
+            return old;
+          }
+
+          const [activeItem] = activeList.items.splice(activeItemIndex, 1);
+          destinationList.items.push(activeItem);
+
+          clone[activeListIndex] = activeList;
+          clone[destinationListIndex] = destinationList;
+          return clone;
+        } finally {
+          setActiveListId(null);
+          setActiveItemId(null);
         }
+      });
+    },
+    [activeItemId, activeListId],
+  );
 
-        const clone = [...old];
-        const activeList = { ...clone[activeListIndex] };
-        const destinationList = { ...clone[destinationListIndex] };
-
-        const activeItemIndex = activeList.items.findIndex(
-          (item) => item.id === activeItemId,
-        );
-
-        if (activeItemIndex === -1) {
-          console.error("Cannot find desired item.");
-          return old;
-        }
-
-        const [activeItem] = activeList.items.splice(activeItemIndex, 1);
-        destinationList.items.push(activeItem);
-
-        clone[activeListIndex] = activeList;
-        clone[destinationListIndex] = destinationList;
-        return clone;
-      } finally {
-        setActiveListId(null);
-        setActiveItemId(null);
-      }
-    });
-  };
-
-  const handleRemoveButtonClick = (): void => {
+  const handleRemoveButtonClick = useCallback((): void => {
     setLists((old) => {
       try {
         const activeListIndex = old.findIndex(
@@ -81,7 +90,10 @@ export default function Board(): ReactNode {
         }
 
         const clone = [...old];
-        const activeList = { ...clone[activeListIndex] };
+        const activeList = {
+          ...clone[activeListIndex],
+          items: [...clone[activeListIndex].items],
+        };
 
         const activeItemIndex = activeList.items.findIndex(
           (item) => item.id === activeItemId,
@@ -101,7 +113,7 @@ export default function Board(): ReactNode {
         setActiveItemId(null);
       }
     });
-  };
+  }, [activeItemId, activeListId]);
 
   const editIcon = useMemo(() => <MingcuteEdit2Line />, []);
   const addIcon = useMemo(() => <MingcuteAddLine />, []);

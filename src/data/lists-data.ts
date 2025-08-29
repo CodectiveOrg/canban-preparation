@@ -1,6 +1,4 @@
-import type { ListType } from "@/types/list.ts";
-
-export const listsData: ListType[] = [
+export const listsData = [
   {
     id: "1",
     title: "🔜 To Do",
