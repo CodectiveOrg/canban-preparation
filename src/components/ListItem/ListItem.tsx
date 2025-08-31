@@ -1,4 +1,6 @@
-import { type ReactNode, memo, use } from "react";
+import { type MouseEvent, type ReactNode, memo, use } from "react";
+
+import { toast } from "react-toastify";
 
 import clsx from "clsx";
 
@@ -25,7 +27,18 @@ const ListItem = memo(function ListItem({
   onClick,
 }: Props): ReactNode {
   const { remove } = use(BoardContext);
-  const { activeItemId } = use(ActiveItemContext);
+  const { activeItemId, deactivate } = use(ActiveItemContext);
+
+  const handleRemoveButtonClick = (e: MouseEvent<HTMLButtonElement>): void => {
+    e.stopPropagation();
+
+    remove(listId, item.id);
+    toast.success("Item removed successfully.");
+
+    if (item.id === activeItemId) {
+      deactivate();
+    }
+  };
 
   return (
     <div
@@ -36,12 +49,7 @@ const ListItem = memo(function ListItem({
       onClick={() => onClick?.(listId, item.id)}
     >
       {item.title}
-      <IconButton
-        onClick={(e) => {
-          e.stopPropagation();
-          remove(listId, item.id);
-        }}
-      >
+      <IconButton onClick={handleRemoveButtonClick}>
         <MingcuteDelete2Line />
       </IconButton>
     </div>
