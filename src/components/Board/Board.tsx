@@ -128,43 +128,37 @@ export default function Board(): ReactNode {
     [activeItemId, activeListId],
   );
 
-  const handleRemoveButtonClick = useCallback((): void => {
-    setLists((old) => {
-      try {
-        const activeListIndex = old.findIndex(
-          (list) => list.id === activeListId,
-        );
+  const handleListItemRemove = useCallback(
+    (listId: string, itemId: string): void => {
+      setLists((old) => {
+        const listIndex = old.findIndex((list) => list.id === listId);
 
-        if (activeListIndex === -1) {
+        if (listIndex === -1) {
           console.error("Cannot find desired list.");
           return old;
         }
 
         const clone = [...old];
-        const activeList = {
-          ...clone[activeListIndex],
-          items: [...clone[activeListIndex].items],
+        const list = {
+          ...clone[listIndex],
+          items: [...clone[listIndex].items],
         };
 
-        const activeItemIndex = activeList.items.findIndex(
-          (item) => item.id === activeItemId,
-        );
+        const itemIndex = list.items.findIndex((item) => item.id === itemId);
 
-        if (activeItemIndex === -1) {
+        if (itemIndex === -1) {
           console.error("Cannot find desired item.");
           return old;
         }
 
-        activeList.items.splice(activeItemIndex, 1);
+        list.items.splice(itemIndex, 1);
 
-        clone[activeListIndex] = activeList;
+        clone[listIndex] = list;
         return clone;
-      } finally {
-        setActiveListId(null);
-        setActiveItemId(null);
-      }
-    });
-  }, [activeItemId, activeListId]);
+      });
+    },
+    [],
+  );
 
   const editIcon = useMemo(() => <MingcuteEdit2Line />, []);
   const addIcon = useMemo(() => <MingcuteAddLine />, []);
@@ -186,7 +180,6 @@ export default function Board(): ReactNode {
                     {list.title}
                   </Button>
                 ))}
-              <Button onClick={handleRemoveButtonClick}>Remove</Button>
             </div>
           )}
           <IconButton>{editIcon}</IconButton>
@@ -196,7 +189,11 @@ export default function Board(): ReactNode {
       <ul className={styles.lists}>
         {lists.map((list) => (
           <li key={list.id}>
-            <List list={list} onClick={handleListItemClick} />
+            <List
+              list={list}
+              onClick={handleListItemClick}
+              onRemove={handleListItemRemove}
+            />
           </li>
         ))}
       </ul>
