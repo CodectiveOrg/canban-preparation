@@ -1,7 +1,10 @@
 import { type ReactNode, memo, use } from "react";
 
+import clsx from "clsx";
+
 import IconButton from "@/components/IconButton/IconButton.tsx";
 
+import { ActiveItemContext } from "@/context/active-item.context.ts";
 import { BoardContext } from "@/context/board-context.ts";
 
 import MingcuteDelete2Line from "@/icons/MingcuteDelete2Line.tsx";
@@ -22,10 +25,14 @@ const ListItem = memo(function ListItem({
   onClick,
 }: Props): ReactNode {
   const { remove } = use(BoardContext);
+  const { activeItemId } = use(ActiveItemContext);
 
   return (
     <div
-      className={styles["list-item"]}
+      className={clsx(
+        styles["list-item"],
+        item.id === activeItemId && styles.active,
+      )}
       onClick={() => onClick?.(listId, item.id)}
     >
       {item.title}
