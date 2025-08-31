@@ -2,8 +2,7 @@ import type { ReactNode } from "react";
 
 import Board from "@/components/Board/Board.tsx";
 
-import ActiveItemProvider from "@/context/active-item.provider.tsx";
-
+import ActiveItemProvider from "@/providers/active-item.provider.tsx";
 import BoardProvider from "@/providers/board.provider.tsx";
 
 import styles from "./BoardPage.module.css";

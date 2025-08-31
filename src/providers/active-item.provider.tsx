@@ -5,7 +5,7 @@ import {
   useState,
 } from "react";
 
-import { ActiveItemContext } from "@/context/active-item.context";
+import { ActiveItemContext } from "@/context/active-item.context.ts";
 
 type Props = PropsWithChildren;
 
