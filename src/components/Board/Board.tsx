@@ -1,9 +1,10 @@
-import { type ReactNode, use, useCallback, useEffect, useState } from "react";
+import { type ReactNode, use } from "react";
 
 import Button from "@/components/Button/Button.tsx";
 import IconButton from "@/components/IconButton/IconButton.tsx";
 import List from "@/components/List/List.tsx";
 
+import { ActiveItemContext } from "@/context/active-item.context.ts";
 import { BoardContext } from "@/context/board-context.ts";
 
 import MingcuteAddLine from "@/icons/MingcuteAddLine.tsx";
@@ -14,42 +15,16 @@ import styles from "./Board.module.css";
 export default function Board(): ReactNode {
   const { lists, create, move } = use(BoardContext);
 
-  const [activeListId, setActiveListId] = useState<string | null>(null);
-  const [activeItemId, setActiveItemId] = useState<string | null>(null);
+  const { activeListId, activeItemId, activate, deactivate } =
+    use(ActiveItemContext);
 
-  useEffect(() => {
-    const handleDocumentKeyDown = (e: KeyboardEvent): void => {
-      if (e.code !== "Escape") {
-        return;
-      }
-
-      setActiveListId(null);
-      setActiveItemId(null);
-    };
-
-    document.addEventListener("keydown", handleDocumentKeyDown);
-
-    return (): void => {
-      document.removeEventListener("keydown", handleDocumentKeyDown);
-    };
-  }, []);
-
-  const handleListItemClick = useCallback(
-    (listId: string, itemId: string): void => {
-      setActiveListId(listId);
-      setActiveItemId(itemId);
-    },
-    [],
-  );
-
-  const handleMoveButtonClick = (destinationListId: string): void => {
-    if (!activeListId || !activeItemId) {
-      setActiveListId(null);
-      setActiveItemId(null);
+  const handleMoveButtonClick = (toListId: string): void => {
+    if (activeListId && activeItemId) {
+      move(activeListId, activeItemId, toListId);
       return;
     }
 
-    move(activeListId, activeItemId, destinationListId);
+    deactivate();
   };
 
   return (
@@ -82,7 +57,7 @@ export default function Board(): ReactNode {
       <ul className={styles.lists}>
         {lists.map((list) => (
           <li key={list.id}>
-            <List list={list} onClick={handleListItemClick} />
+            <List list={list} onClick={activate} />
           </li>
         ))}
       </ul>
