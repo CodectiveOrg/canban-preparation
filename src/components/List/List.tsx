@@ -1,4 +1,4 @@
-import { type ReactNode, memo, useMemo } from "react";
+import { type ReactNode, memo } from "react";
 
 import IconButton from "@/components/IconButton/IconButton.tsx";
 import ListItem from "@/components/ListItem/ListItem.tsx";
@@ -12,27 +12,21 @@ import styles from "./List.module.css";
 type Props = {
   list: ListType;
   onClick?: (listId: string, itemId: string) => void;
-  onRemove?: (listId: string, itemId: string) => void;
 };
 
-const List = memo(function List({ list, onClick, onRemove }: Props): ReactNode {
-  const moreIcon = useMemo(() => <MingcuteMore1Line />, []);
-
+const List = memo(function List({ list, onClick }: Props): ReactNode {
   return (
     <div className={styles.list}>
       <div className={styles.header}>
         <div className={styles.title}>{list.title}</div>
-        <IconButton>{moreIcon}</IconButton>
+        <IconButton>
+          <MingcuteMore1Line />
+        </IconButton>
       </div>
       <ul className={styles.items}>
         {list.items.map((item) => (
           <li key={item.id}>
-            <ListItem
-              listId={list.id}
-              item={item}
-              onClick={onClick}
-              onRemove={onRemove}
-            />
+            <ListItem listId={list.id} item={item} onClick={onClick} />
           </li>
         ))}
       </ul>

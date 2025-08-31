@@ -1,6 +1,8 @@
-import { type ReactNode, memo } from "react";
+import { type ReactNode, memo, use } from "react";
 
 import IconButton from "@/components/IconButton/IconButton.tsx";
+
+import { BoardContext } from "@/context/board-context.ts";
 
 import MingcuteDelete2Line from "@/icons/MingcuteDelete2Line.tsx";
 
@@ -12,15 +14,15 @@ type Props = {
   listId: string;
   item: ListItemType;
   onClick?: (listId: string, itemId: string) => void;
-  onRemove?: (listId: string, itemId: string) => void;
 };
 
 const ListItem = memo(function ListItem({
   listId,
   item,
   onClick,
-  onRemove,
 }: Props): ReactNode {
+  const { remove } = use(BoardContext);
+
   return (
     <div
       className={styles["list-item"]}
@@ -30,7 +32,7 @@ const ListItem = memo(function ListItem({
       <IconButton
         onClick={(e) => {
           e.stopPropagation();
-          onRemove?.(listId, item.id);
+          remove(listId, item.id);
         }}
       >
         <MingcuteDelete2Line />
