@@ -1,11 +1,8 @@
-import type { ListItemType } from "@/types/list-item.ts";
 import type { ListType } from "@/types/list.ts";
 
 type Action =
   | {
       type: "created";
-      listId: string;
-      item: ListItemType;
     }
   | {
       type: "moved";
@@ -22,13 +19,12 @@ type Action =
 export function listsReducer(state: ListType[], action: Action): ListType[] {
   switch (action.type) {
     case "created": {
-      return state.map((list) => {
-        if (list.id !== action.listId) {
-          return list;
-        }
+      const clone = [...state];
 
-        return { ...list, items: [...list.items, action.item] };
-      });
+      const id = globalThis.crypto.randomUUID();
+      clone[0] = { ...clone[0], items: [...clone[0].items, { id, title: id }] };
+
+      return clone;
     }
     case "moved": {
       const fromListIndex = state.findIndex(
@@ -43,15 +39,6 @@ export function listsReducer(state: ListType[], action: Action): ListType[] {
         return state;
       }
 
-      const itemIndex = state[fromListIndex].items.findIndex(
-        (item) => item.id === action.itemId,
-      );
-
-      if (itemIndex === -1) {
-        console.error("Cannot find desired item.");
-        return state;
-      }
-
       const clone = [...state];
       const fromList = {
         ...clone[fromListIndex],
@@ -62,6 +49,15 @@ export function listsReducer(state: ListType[], action: Action): ListType[] {
         items: [...clone[toListIndex].items],
       };
 
+      const itemIndex = fromList.items.findIndex(
+        (item) => item.id === action.itemId,
+      );
+
+      if (itemIndex === -1) {
+        console.error("Cannot find desired item.");
+        return state;
+      }
+
       const [item] = fromList.items.splice(itemIndex, 1);
       toList.items.push(item);
 
@@ -70,19 +66,35 @@ export function listsReducer(state: ListType[], action: Action): ListType[] {
       return clone;
     }
     case "removed": {
-      return state.map((list) => {
-        if (list.id !== action.listId) {
-          return list;
-        }
+      const listIndex = state.findIndex((list) => list.id === action.listId);
 
-        return {
-          ...list,
-          items: list.items.filter((item) => item.id !== action.itemId),
-        };
-      });
+      if (listIndex === -1) {
+        console.error("Cannot find desired list.");
+        return state;
+      }
+
+      const clone = [...state];
+      const list = {
+        ...clone[listIndex],
+        items: [...clone[listIndex].items],
+      };
+
+      const itemIndex = list.items.findIndex(
+        (item) => item.id === action.itemId,
+      );
+
+      if (itemIndex === -1) {
+        console.error("Cannot find desired item.");
+        return state;
+      }
+
+      list.items.splice(itemIndex, 1);
+
+      clone[listIndex] = list;
+      return clone;
     }
     default: {
-      throw Error("Unknown action.");
+      throw new Error("Unknown action.");
     }
   }
 }

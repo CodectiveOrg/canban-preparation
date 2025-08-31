@@ -5,7 +5,7 @@ import {
   useState,
 } from "react";
 
-import { ActiveItemContext } from "@/context/active-item.context.ts";
+import { ActiveItemContext } from "@/context/active-item-context.ts";
 
 type Props = PropsWithChildren;
 
@@ -19,8 +19,7 @@ export default function ActiveItemProvider({ children }: Props): ReactNode {
         return;
       }
 
-      setActiveListId(null);
-      setActiveItemId(null);
+      deactivate();
     };
 
     document.addEventListener("keydown", handleDocumentKeyDown);
@@ -41,10 +40,10 @@ export default function ActiveItemProvider({ children }: Props): ReactNode {
   };
 
   return (
-    <ActiveItemContext.Provider
+    <ActiveItemContext
       value={{ activeListId, activeItemId, activate, deactivate }}
     >
       {children}
-    </ActiveItemContext.Provider>
+    </ActiveItemContext>
   );
 }

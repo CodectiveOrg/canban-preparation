@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import Board from "@/components/Board/Board.tsx";
 
@@ -9,12 +9,12 @@ import styles from "./BoardPage.module.css";
 
 export default function BoardPage(): ReactNode {
   return (
-    <BoardProvider>
-      <ActiveItemProvider>
-        <div className={styles["board-page"]}>
+    <div className={styles["board-page"]}>
+      <BoardProvider>
+        <ActiveItemProvider>
           <Board />
-        </div>
-      </ActiveItemProvider>
-    </BoardProvider>
+        </ActiveItemProvider>
+      </BoardProvider>
+    </div>
   );
 }

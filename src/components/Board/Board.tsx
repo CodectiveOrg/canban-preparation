@@ -6,7 +6,7 @@ import Button from "@/components/Button/Button.tsx";
 import IconButton from "@/components/IconButton/IconButton.tsx";
 import List from "@/components/List/List.tsx";
 
-import { ActiveItemContext } from "@/context/active-item.context.ts";
+import { ActiveItemContext } from "@/context/active-item-context.ts";
 import { BoardContext } from "@/context/board-context.ts";
 
 import MingcuteAddLine from "@/icons/MingcuteAddLine.tsx";
@@ -17,8 +17,12 @@ import styles from "./Board.module.css";
 export default function Board(): ReactNode {
   const { lists, create, move } = use(BoardContext);
 
-  const { activeListId, activeItemId, activate, deactivate } =
-    use(ActiveItemContext);
+  const { activeListId, activeItemId, deactivate } = use(ActiveItemContext);
+
+  const handleCreateButtonClick = (): void => {
+    create();
+    toast.success("Item created successfully.");
+  };
 
   const handleMoveButtonClick = (toListId: string): void => {
     if (activeListId && activeItemId) {
@@ -27,11 +31,6 @@ export default function Board(): ReactNode {
     }
 
     deactivate();
-  };
-
-  const handleCreateButtonClick = (): void => {
-    create();
-    toast.success("Item created successfully.");
   };
 
   return (
@@ -64,7 +63,7 @@ export default function Board(): ReactNode {
       <ul className={styles.lists}>
         {lists.map((list) => (
           <li key={list.id}>
-            <List list={list} onClick={activate} />
+            <List list={list} />
           </li>
         ))}
       </ul>

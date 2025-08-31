@@ -1,4 +1,4 @@
-import { type MouseEvent, type ReactNode, memo, use } from "react";
+import { type MouseEvent, type ReactNode, use } from "react";
 
 import { toast } from "react-toastify";
 
@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 import IconButton from "@/components/IconButton/IconButton.tsx";
 
-import { ActiveItemContext } from "@/context/active-item.context.ts";
+import { ActiveItemContext } from "@/context/active-item-context.ts";
 import { BoardContext } from "@/context/board-context.ts";
 
 import MingcuteDelete2Line from "@/icons/MingcuteDelete2Line.tsx";
@@ -18,16 +18,19 @@ import styles from "./ListItem.module.css";
 type Props = {
   listId: string;
   item: ListItemType;
-  onClick?: (listId: string, itemId: string) => void;
 };
 
-const ListItem = memo(function ListItem({
-  listId,
-  item,
-  onClick,
-}: Props): ReactNode {
+export default function ListItem({ listId, item }: Props): ReactNode {
   const { remove } = use(BoardContext);
-  const { activeItemId, deactivate } = use(ActiveItemContext);
+  const { activeItemId, activate, deactivate } = use(ActiveItemContext);
+
+  const handleListItemClick = (): void => {
+    if (item.id === activeItemId) {
+      deactivate();
+    } else {
+      activate(listId, item.id);
+    }
+  };
 
   const handleRemoveButtonClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation();
@@ -35,9 +38,7 @@ const ListItem = memo(function ListItem({
     remove(listId, item.id);
     toast.success("Item removed successfully.");
 
-    if (item.id === activeItemId) {
-      deactivate();
-    }
+    deactivate();
   };
 
   return (
@@ -46,7 +47,7 @@ const ListItem = memo(function ListItem({
         styles["list-item"],
         item.id === activeItemId && styles.active,
       )}
-      onClick={() => onClick?.(listId, item.id)}
+      onClick={handleListItemClick}
     >
       {item.title}
       <IconButton onClick={handleRemoveButtonClick}>
@@ -54,6 +55,4 @@ const ListItem = memo(function ListItem({
       </IconButton>
     </div>
   );
-});
-
-export default ListItem;
+}
