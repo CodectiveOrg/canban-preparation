@@ -6,6 +6,8 @@ import {
   useState,
 } from "react";
 
+import { listsData } from "@/data/lists-data.ts";
+
 import Button from "@/components/Button/Button.tsx";
 import IconButton from "@/components/IconButton/IconButton.tsx";
 import List from "@/components/List/List.tsx";
@@ -22,30 +24,29 @@ function save(lists: ListType[]): void {
 }
 
 function load(): ListType[] {
-  console.log("load");
-
   const item = localStorage.getItem("lists");
   if (!item) {
-    return [];
+    return listsData;
   }
 
   return JSON.parse(item);
 }
 
 export default function Board(): ReactNode {
+  console.log("render");
+
   const [lists, setLists] = useState<ListType[]>(load);
 
   const [activeListId, setActiveListId] = useState<string | null>(null);
   const [activeItemId, setActiveItemId] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log("useEffect");
     save(lists);
   }, [lists]);
 
   useEffect(() => {
-    const handleDocumentKeydown = (e: KeyboardEvent): void => {
-      console.log("check dismiss");
+    const handleDocumentKeyDown = (e: KeyboardEvent): void => {
+      console.log("keydown");
 
       if (e.code !== "Escape") {
         return;
@@ -55,10 +56,10 @@ export default function Board(): ReactNode {
       setActiveItemId(null);
     };
 
-    document.addEventListener("keydown", handleDocumentKeydown);
+    document.addEventListener("keydown", handleDocumentKeyDown);
 
     return (): void => {
-      document.removeEventListener("keydown", handleDocumentKeydown);
+      document.removeEventListener("keydown", handleDocumentKeyDown);
     };
   }, []);
 
@@ -70,7 +71,7 @@ export default function Board(): ReactNode {
     [],
   );
 
-  const handleAddButtonClick = (): void => {
+  const handleCreateButtonClick = (): void => {
     setLists((old) => {
       const clone = [...old];
 
@@ -169,10 +170,7 @@ export default function Board(): ReactNode {
     });
   }, [activeItemId, activeListId]);
 
-  const editIcon = useMemo(() => {
-    console.log("useMemo");
-    return <MingcuteEdit2Line />;
-  }, []);
+  const editIcon = useMemo(() => <MingcuteEdit2Line />, []);
   const addIcon = useMemo(() => <MingcuteAddLine />, []);
 
   return (
@@ -196,7 +194,7 @@ export default function Board(): ReactNode {
             </div>
           )}
           <IconButton>{editIcon}</IconButton>
-          <IconButton onClick={handleAddButtonClick}>{addIcon}</IconButton>
+          <IconButton onClick={handleCreateButtonClick}>{addIcon}</IconButton>
         </div>
       </div>
       <ul className={styles.lists}>
