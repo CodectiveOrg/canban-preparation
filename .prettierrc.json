@@ -17,6 +17,7 @@
     "^@/icons",
     "^@/pages",
     "^@/providers",
+    "^@/reducers",
     "^@/stores",
     "^@/types",
     "^@/utils",
