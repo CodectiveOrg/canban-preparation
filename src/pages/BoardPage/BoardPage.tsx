@@ -1,7 +1,7 @@
 import { type ReactNode, useRef } from "react";
 
 import Button from "@/components/Button/Button.tsx";
-import Modal from "@/components/Modal/Modal.tsx";
+import CreateListItemModal from "@/components/CreateListItemModal/CreateListItemModal.tsx";
 
 import ActiveItemProvider from "@/providers/ActiveItemProvider.tsx";
 import BoardProvider from "@/providers/BoardProvider.tsx";
@@ -24,9 +24,9 @@ export default function BoardPage(): ReactNode {
           <Button color="primary" onClick={handleOpenButtonClick}>
             Open
           </Button>
-          <Modal ref={modalRef} heading="This is heading">
+          <CreateListItemModal ref={modalRef}>
             This is content.
-          </Modal>
+          </CreateListItemModal>
         </div>
       </ActiveItemProvider>
     </BoardProvider>
