@@ -3,6 +3,7 @@ import {
   type FormEvent,
   type ReactNode,
   useContext,
+  useState,
 } from "react";
 
 import { toast } from "react-toastify";
@@ -29,7 +30,10 @@ export default function CreateListItemModal({
 }: Props): ReactNode {
   const { create } = useContext(BoardContext);
 
+  const [titleError, setTitleError] = useState<string | null>(null);
+
   const handleCancelButtonClick = (): void => {
+    setTitleError(null);
     ref.current?.close();
   };
 
@@ -42,14 +46,33 @@ export default function CreateListItemModal({
     }
 
     const formData = new FormData(e.currentTarget);
-    const id = globalThis.crypto.randomUUID();
     const title = formData.get("title") as string;
 
-    create(listId, { id, title });
+    if (!validateTitle(title)) {
+      return;
+    }
+
+    const id = globalThis.crypto.randomUUID();
+    create(listId, { id, title: title.trim() });
     toast.success("Item created successfully.");
 
     e.currentTarget.reset();
     ref.current?.close();
+  };
+
+  const validateTitle = (title: unknown): boolean => {
+    if (typeof title !== "string") {
+      setTitleError("Title must be a string.");
+      return false;
+    }
+
+    if (!title.trim().length) {
+      setTitleError("Title cannot be empty.");
+      return false;
+    }
+
+    setTitleError(null);
+    return true;
   };
 
   return (
@@ -63,7 +86,7 @@ export default function CreateListItemModal({
       {...otherProps}
     >
       <form onSubmit={handleFormSubmit}>
-        <TextInputComponent label="Title" name="title" />
+        <TextInputComponent label="Title" name="title" error={titleError} />
         <div className={styles.actions}>
           <Button type="button" onClick={handleCancelButtonClick}>
             Cancel
