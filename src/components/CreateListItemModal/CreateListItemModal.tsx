@@ -1,4 +1,5 @@
 import {
+  type ChangeEvent,
   type ComponentProps,
   type FormEvent,
   type ReactNode,
@@ -30,6 +31,10 @@ export default function CreateListItemModal({
 }: Props): ReactNode {
   const { create } = useContext(BoardContext);
 
+  const [shouldValidateOnChange, setShouldValidateOnChange] =
+    useState<boolean>(false);
+
+  const [title, setTitle] = useState<string>("");
   const [titleError, setTitleError] = useState<string | null>(null);
 
   const handleCancelButtonClick = (): void => {
@@ -45,6 +50,8 @@ export default function CreateListItemModal({
       return;
     }
 
+    setShouldValidateOnChange(true);
+
     const formData = new FormData(e.currentTarget);
     const title = formData.get("title") as string;
 
@@ -58,6 +65,16 @@ export default function CreateListItemModal({
 
     e.currentTarget.reset();
     ref.current?.close();
+  };
+
+  const handleTitleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    const value = e.target.value;
+
+    if (shouldValidateOnChange) {
+      validateTitle(value);
+    }
+
+    setTitle(value);
   };
 
   const validateTitle = (title: unknown): boolean => {
@@ -86,7 +103,13 @@ export default function CreateListItemModal({
       {...otherProps}
     >
       <form onSubmit={handleFormSubmit}>
-        <TextInputComponent label="Title" name="title" error={titleError} />
+        <TextInputComponent
+          label="Title"
+          name="title"
+          value={title}
+          error={titleError}
+          onChange={handleTitleChange}
+        />
         <div className={styles.actions}>
           <Button type="button" onClick={handleCancelButtonClick}>
             Cancel
