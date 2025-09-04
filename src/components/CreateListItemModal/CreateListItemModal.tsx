@@ -5,6 +5,8 @@ import {
   useContext,
 } from "react";
 
+import { toast } from "react-toastify";
+
 import clsx from "clsx";
 
 import Button from "@/components/Button/Button.tsx";
@@ -15,7 +17,7 @@ import { BoardContext } from "@/context/board-context.ts";
 
 import styles from "./CreateListItemModal.module.css";
 
-type Props = Omit<ComponentProps<typeof Modal>, "heading"> & {
+type Props = Omit<ComponentProps<typeof Modal>, "heading" | "children"> & {
   listId: string | null;
 };
 
@@ -44,6 +46,7 @@ export default function CreateListItemModal({
     const title = formData.get("title") as string;
 
     create(listId, { id, title });
+    toast.success("Item created successfully.");
 
     e.currentTarget.reset();
     ref.current?.close();
