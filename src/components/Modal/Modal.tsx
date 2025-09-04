@@ -1,4 +1,9 @@
-import type { ComponentProps, MouseEvent, ReactNode, RefObject } from "react";
+import {
+  type ComponentProps,
+  type MouseEvent,
+  type ReactNode,
+  type RefObject,
+} from "react";
 
 import clsx from "clsx";
 
@@ -26,9 +31,9 @@ export default function Modal({
   const handleDialogClick = (e: MouseEvent<HTMLDialogElement>): void => {
     if (e.target === e.currentTarget) {
       ref.current?.close();
-    } else {
-      onClick?.(e);
     }
+
+    onClick?.(e);
   };
 
   const handleCloseButtonClick = (): void => {
