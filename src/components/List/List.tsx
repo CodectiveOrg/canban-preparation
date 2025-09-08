@@ -3,8 +3,6 @@ import { type ReactNode } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-import clsx from "clsx";
-
 import ListHeader from "@/components/List/components/ListHeader/ListHeader.tsx";
 import ListItems from "@/components/List/components/ListItems/ListItems.tsx";
 
@@ -35,7 +33,7 @@ export default function List({
   return (
     <div
       ref={setNodeRef}
-      className={clsx(styles.list, presentational && styles.presentational)}
+      className={styles.list}
       style={{
         opacity: isDragging ? "0.5" : undefined,
         transform: CSS.Translate.toString(transform),
