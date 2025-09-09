@@ -8,6 +8,7 @@ import {
 
 import { toast } from "react-toastify";
 
+import Button from "@/components/Button/Button.tsx";
 import TextArea from "@/components/TextArea/TextArea.tsx";
 import TextInput from "@/components/TextInput/TextInput.tsx";
 
@@ -34,6 +35,17 @@ export default function ListItemModal({
   const { dispatchLists } = use(BoardContext);
 
   const [titleError, setTitleError] = useState<string | null>(null);
+
+  const handleRemoveButtonClick = (): void => {
+    if (!itemIndex) {
+      return;
+    }
+
+    dispatchLists({ type: "item_removed", listIndex, itemIndex });
+    toast.success("Item removed successfully.");
+
+    modalRef.current?.close();
+  };
 
   const handleFormReset = (): void => {
     setTitleError(null);
@@ -95,6 +107,18 @@ export default function ListItemModal({
       heading={itemIndex ? `Edit Exising Item` : "Create a New Item"}
       onReset={handleFormReset}
       onSubmit={handleFormSubmit}
+      extraActions={
+        itemIndex !== undefined && (
+          <Button
+            type="button"
+            variant="text"
+            color="danger"
+            onClick={handleRemoveButtonClick}
+          >
+            Remove
+          </Button>
+        )
+      }
     >
       <TextInput
         label="Title"
