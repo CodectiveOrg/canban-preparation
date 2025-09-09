@@ -8,6 +8,7 @@ import {
 
 import { toast } from "react-toastify";
 
+import Button from "@/components/Button/Button.tsx";
 import TextInput from "@/components/TextInput/TextInput.tsx";
 
 import { BoardContext } from "@/context/board-context.ts";
@@ -18,12 +19,25 @@ type Values = {
   title: string;
 };
 
-type Props = Pick<ComponentProps<typeof FormModal>, "modalRef"> & {};
+type Props = Pick<ComponentProps<typeof FormModal>, "modalRef"> & {
+  listIndex?: number;
+};
 
-export default function ListModal({ modalRef }: Props): ReactNode {
+export default function ListModal({ modalRef, listIndex }: Props): ReactNode {
   const { dispatchLists } = use(BoardContext);
 
   const [titleError, setTitleError] = useState<string | null>(null);
+
+  const handleRemoveButtonClick = (): void => {
+    if (!listIndex) {
+      return;
+    }
+
+    dispatchLists({ type: "list_removed", listIndex });
+    toast.success("List removed successfully.");
+
+    modalRef.current?.close();
+  };
 
   const handleFormReset = (): void => {
     setTitleError(null);
@@ -72,6 +86,18 @@ export default function ListModal({ modalRef }: Props): ReactNode {
       heading="Create a New List"
       onReset={handleFormReset}
       onSubmit={handleFormSubmit}
+      extraActions={
+        listIndex !== undefined && (
+          <Button
+            type="button"
+            variant="text"
+            color="danger"
+            onClick={handleRemoveButtonClick}
+          >
+            Remove
+          </Button>
+        )
+      }
     >
       <TextInput label="Title" type="text" name="title" error={titleError} />
     </FormModal>
