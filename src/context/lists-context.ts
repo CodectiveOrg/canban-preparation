@@ -9,7 +9,7 @@ type ContextValue = {
   dispatchLists: ActionDispatch<[action: ListsAction]>;
 };
 
-export const BoardContext = createContext<ContextValue>({
+export const ListsContext = createContext<ContextValue>({
   lists: [],
   dispatchLists: () => {},
 });
