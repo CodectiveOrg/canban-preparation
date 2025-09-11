@@ -6,6 +6,4 @@ type ContextValue = {
   board: BoardType;
 };
 
-export const BoardPageContext = createContext<ContextValue>({
-  board: {} as BoardType,
-});
+export const BoardPageContext = createContext<ContextValue>({} as ContextValue);

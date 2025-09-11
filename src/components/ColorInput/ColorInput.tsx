@@ -53,11 +53,11 @@ export default function ColorInput({
         {BOARD_COLORS.map((color) => (
           <button
             key={color}
-            className={clsx(color, value === color && styles.active)}
+            className={clsx(color, color === value && styles.active)}
             type="button"
             onClick={() => handleButtonClick(color)}
           >
-            {value === color && <MingcuteCheckFill />}
+            {color === value && <MingcuteCheckFill />}
           </button>
         ))}
       </div>

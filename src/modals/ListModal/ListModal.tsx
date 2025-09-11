@@ -15,9 +15,9 @@ import { ListsContext } from "@/context/lists-context.ts";
 
 import FormModal from "@/modals/FormModal/FormModal.tsx";
 
-type Values = {
-  title: string;
-};
+import type { ListType } from "@/types/list.ts";
+
+type Values = Omit<ListType, "id" | "items">;
 
 type Props = Pick<ComponentProps<typeof FormModal>, "modalRef"> & {
   listIndex?: number;
@@ -34,7 +34,7 @@ export default function ListModal({
   const [titleError, setTitleError] = useState<string | null>(null);
 
   const handleRemoveButtonClick = (): void => {
-    if (!listIndex) {
+    if (listIndex === undefined) {
       return;
     }
 
@@ -93,7 +93,9 @@ export default function ListModal({
   return (
     <FormModal
       modalRef={modalRef}
-      heading={listIndex ? `Edit Exising List` : "Create a New List"}
+      heading={
+        listIndex !== undefined ? "Edit Existing List" : "Create a New List"
+      }
       onReset={handleFormReset}
       onSubmit={handleFormSubmit}
       extraActions={

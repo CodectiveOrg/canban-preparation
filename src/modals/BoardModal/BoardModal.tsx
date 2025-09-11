@@ -19,7 +19,7 @@ import { BoardsContext } from "@/context/boards-context.ts";
 
 import FormModal from "@/modals/FormModal/FormModal.tsx";
 
-import { type BoardColor, type BoardType } from "@/types/board.ts";
+import type { BoardColor, BoardType } from "@/types/board.ts";
 
 type Values = Omit<BoardType, "id" | "lists">;
 
@@ -40,7 +40,7 @@ export default function BoardModal({
   const [titleError, setTitleError] = useState<string | null>(null);
 
   const handleRemoveButtonClick = (): void => {
-    if (!boardId) {
+    if (boardId === undefined) {
       return;
     }
 
@@ -103,7 +103,9 @@ export default function BoardModal({
   return (
     <FormModal
       modalRef={modalRef}
-      heading={boardId ? `Edit Exising Board` : "Create a New Board"}
+      heading={
+        boardId !== undefined ? "Edit Existing Board" : "Create a New Board"
+      }
       onReset={handleFormReset}
       onSubmit={handleFormSubmit}
       extraActions={

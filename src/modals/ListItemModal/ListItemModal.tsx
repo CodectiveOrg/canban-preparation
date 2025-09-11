@@ -37,7 +37,7 @@ export default function ListItemModal({
   const [titleError, setTitleError] = useState<string | null>(null);
 
   const handleRemoveButtonClick = (): void => {
-    if (!itemIndex) {
+    if (itemIndex === undefined) {
       return;
     }
 
@@ -104,7 +104,9 @@ export default function ListItemModal({
   return (
     <FormModal
       modalRef={modalRef}
-      heading={itemIndex ? `Edit Exising Item` : "Create a New Item"}
+      heading={
+        itemIndex !== undefined ? `Edit Exising Item` : "Create a New Item"
+      }
       onReset={handleFormReset}
       onSubmit={handleFormSubmit}
       extraActions={
