@@ -10,7 +10,6 @@ import { toast } from "react-toastify";
 
 import { z } from "zod";
 
-import Button from "@/components/Button/Button.tsx";
 import TextArea from "@/components/TextArea/TextArea.tsx";
 import TextInput from "@/components/TextInput/TextInput.tsx";
 
@@ -99,20 +98,9 @@ export default function ListItemModal({
       heading={
         itemIndex !== undefined ? `Edit Exising Item` : "Create a New Item"
       }
+      onRemove={itemIndex !== undefined && handleRemoveButtonClick}
       onReset={handleFormReset}
       onSubmit={handleFormSubmit}
-      extraActions={
-        itemIndex !== undefined && (
-          <Button
-            type="button"
-            variant="text"
-            color="danger"
-            onClick={handleRemoveButtonClick}
-          >
-            Remove
-          </Button>
-        )
-      }
     >
       <TextInput
         label="Title"
