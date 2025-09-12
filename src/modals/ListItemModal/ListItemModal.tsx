@@ -34,6 +34,7 @@ export default function ListItemModal({
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues,
@@ -79,6 +80,7 @@ export default function ListItemModal({
       heading={
         itemIndex !== undefined ? `Edit Exising Item` : "Create a New Item"
       }
+      onClose={() => reset()}
       onRemove={itemIndex !== undefined && handleRemoveButtonClick}
       onSubmit={handleSubmit(handleFormSubmit)}
     >
