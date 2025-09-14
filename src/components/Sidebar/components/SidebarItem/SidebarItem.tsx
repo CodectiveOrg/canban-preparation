@@ -10,7 +10,7 @@ import type { BoardColor } from "@/types/board.ts";
 
 import styles from "./SidebarItem.module.css";
 
-export type Props = {
+type Props = {
   href?: string;
   title: string;
   color: BoardColor;

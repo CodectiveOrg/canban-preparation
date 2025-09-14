@@ -2,7 +2,7 @@
   display: grid;
   gap: 0.5rem;
 
-  > .title {
+  .title {
     color: var(--color-text-secondary);
 
     padding-inline: var(--item-padding-inline);

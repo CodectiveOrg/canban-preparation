@@ -13,7 +13,7 @@ import MingcuteSettings5Line from "@/icons/MingcuteSettings5Line.tsx";
 
 import styles from "./SidebarGroups.module.css";
 
-type NavGroup = {
+type SidebarGroup = {
   title?: string;
   items: ComponentProps<typeof SidebarItem>[];
 };
@@ -22,7 +22,7 @@ export default function SidebarGroups(): ReactNode {
   const { boards } = use(BoardsContext);
   const { isCollapsed } = use(SidebarContext);
 
-  const groups: NavGroup[] = [
+  const groups: SidebarGroup[] = [
     {
       items: [
         {
@@ -50,13 +50,7 @@ export default function SidebarGroups(): ReactNode {
         href: `/board/${board.id}`,
         title: board.title,
         color: board.color,
-        icon: (
-          <Initials
-            className={styles.initials}
-            title={board.title}
-            color={board.color}
-          />
-        ),
+        icon: <Initials title={board.title} color={board.color} />,
       })),
     },
   ];

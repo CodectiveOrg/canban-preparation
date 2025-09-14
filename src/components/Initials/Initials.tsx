@@ -17,8 +17,8 @@ export default function Initials({
   title,
   color,
 }: Props): ReactNode {
-  const parts = title.trim().split(/\s/);
-  const initials = `${parts[0][0]}${parts[1] ? parts[1][0] : ""}`;
+  const parts = title.trim().split(/\s+/);
+  const initials = `${parts[0][0]}${parts.at(-1)?.[0] ?? ""}`;
 
   return (
     <div className={clsx(styles.initials, color, className)}>

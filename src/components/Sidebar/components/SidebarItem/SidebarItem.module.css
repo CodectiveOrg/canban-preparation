@@ -30,7 +30,7 @@
 
   &:hover,
   &.active {
-    background-color: var(--color-50);
+    background-color: var(--color-100);
     color: var(--color-main);
   }
 
