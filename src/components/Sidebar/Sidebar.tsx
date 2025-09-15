@@ -35,6 +35,7 @@ export default function Sidebar(): ReactNode {
       </nav>
       <div className={styles.footer}>
         <SidebarItem
+          id="sign-out"
           title="Sign Out"
           color="gray"
           icon={<MingcuteExitLine />}
