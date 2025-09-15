@@ -3,15 +3,14 @@ import { persist } from "zustand/middleware";
 
 type SidebarState = {
   isCollapsed: boolean;
-  fold: () => unknown;
+  fold: () => void;
 };
 
 export const useSidebarStore = create<SidebarState>()(
   persist(
     (set) => ({
       isCollapsed: false,
-      fold: (): unknown =>
-        set((state) => ({ isCollapsed: !state.isCollapsed })),
+      fold: () => set((state) => ({ isCollapsed: !state.isCollapsed })),
     }),
     { name: "sidebar" },
   ),

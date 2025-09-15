@@ -5,20 +5,20 @@ import type { Theme } from "@/types/theme.ts";
 
 type ThemeState = {
   theme: Theme;
-  toggleTheme: () => unknown;
+  toggleTheme: () => void;
 };
 
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
       theme: "light",
-      toggleTheme: (): unknown =>
+      toggleTheme: () =>
         set((state) => ({ theme: state.theme === "light" ? "dark" : "light" })),
     }),
     {
       name: "theme",
       onRehydrateStorage: () => {
-        return (state): void => {
+        return (state) => {
           if (state) {
             document.documentElement.dataset.theme = state.theme;
           }
