@@ -12,9 +12,7 @@ export type BoardsSlice = {
   removeBoard: (boardId: string | undefined) => void;
 };
 
-export const createBoardsSlice: KanbanStateCreator<BoardsSlice> = (
-  set,
-): BoardsSlice => ({
+export const createBoardsSlice: KanbanStateCreator<BoardsSlice> = (set) => ({
   boards: boardsData,
   createBoard: (board) =>
     set((state) => {

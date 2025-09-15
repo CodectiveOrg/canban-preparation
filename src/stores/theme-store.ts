@@ -19,9 +19,7 @@ export const useThemeStore = create<ThemeState>()(
       name: "theme",
       onRehydrateStorage: () => {
         return (state) => {
-          if (state) {
-            document.documentElement.dataset.theme = state.theme;
-          }
+          document.documentElement.dataset.theme = state?.theme ?? "light";
         };
       },
     },

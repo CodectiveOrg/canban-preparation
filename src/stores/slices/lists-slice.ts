@@ -21,9 +21,7 @@ export type ListsSlice = {
   ) => void;
 };
 
-export const createListsSlice: KanbanStateCreator<ListsSlice> = (
-  set,
-): ListsSlice => ({
+export const createListsSlice: KanbanStateCreator<ListsSlice> = (set) => ({
   createList: (boardId, list) =>
     set((state) =>
       withBoard(state, boardId, (board) => {

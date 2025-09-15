@@ -30,8 +30,8 @@
 
     .arrow {
       position: absolute;
-      inset-inline-end: 0;
       inset-block-start: 50%;
+      inset-inline-end: 0;
 
       translate: 0 -50%;
     }

@@ -30,8 +30,8 @@
       background-color: var(--color-surface-3);
       box-shadow: var(--shadow-2);
 
-      block-size: 1em;
-      inline-size: 1em;
+      block-size: var(--thumb-size);
+      inline-size: var(--thumb-size);
 
       border-radius: 999rem;
 
