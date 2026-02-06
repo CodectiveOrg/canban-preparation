@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router";
 
 import { ErrorBoundary } from "react-error-boundary";
 
-import ModalContainer from "@/components/ModalContainer/ModalContainer.tsx";
 import Toaster from "@/components/Toaster/Toaster.tsx";
 
 import ErrorPage from "@/pages/ErrorPage/ErrorPage.tsx";
@@ -23,7 +22,6 @@ createRoot(document.getElementById("root")!).render(
     <ErrorBoundary FallbackComponent={ErrorPage}>
       <BrowserRouter>
         <App />
-        <ModalContainer />
         <Toaster />
       </BrowserRouter>
     </ErrorBoundary>
