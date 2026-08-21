@@ -38,7 +38,7 @@ export default function SignInForm(): ReactNode {
       return;
     }
 
-    toast.success("Signed in successfully.");
+    toast.success(data.message);
     navigate("/");
   };
 
