@@ -10,5 +10,4 @@ export const StrictPasswordSchema = PasswordSchema.min(
 )
   .regex(/[a-z]/, "Password must contain at least one lowercase letter.")
   .regex(/[A-Z]/, "Password must contain at least one uppercase letter.")
-  .regex(/\d/, "Password must contain at least one digit.")
-  .regex(/[!@#$%^&*]/, "Password must contain at least one symbol (!@#$%^&*).");
+  .regex(/\d/, "Password must contain at least one digit.");
