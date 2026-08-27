@@ -1,6 +1,6 @@
-import type { ResponseDto } from "@/dto/response.dto.ts";
+import type { ResponseDto } from "@/dto/response-dto";
 
-import type { SafeUser } from "@/entities/user";
+import type { SafeUser } from "@/entities/user.ts";
 
 import { richFetch } from "@/utils/fetch.utils";
 

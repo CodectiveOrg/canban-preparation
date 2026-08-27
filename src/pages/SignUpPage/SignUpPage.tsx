@@ -1,9 +1,9 @@
-import { type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import AuthCard from "@/components/AuthCard/AuthCard.tsx";
 import Divider from "@/components/Divider/Divider.tsx";
+import RandomButton from "@/components/RandomButton/RandomButton.tsx";
 
-import RandomButton from "@/pages/SignUpPage/components/RandomButton/RandomButton.tsx";
 import SignUpForm from "@/pages/SignUpPage/components/SignUpForm/SignUpForm.tsx";
 
 import styles from "./SignUpPage.module.css";

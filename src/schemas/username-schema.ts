@@ -5,7 +5,7 @@ export const UsernameSchema = z
   .trim()
   .nonempty("Username cannot be empty.");
 
-export const StrictUsernameSchema = UsernameSchema.min(
+export const strictUsernameSchema = UsernameSchema.min(
   3,
-  "Username must be at least 3 characters.",
+  "Username must be at least 3 characters long.",
 );

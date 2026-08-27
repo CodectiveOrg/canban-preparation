@@ -109,7 +109,7 @@
   --color-primary-contrast: var(--color-white);
 
   --color-success-fade: light-dark(
-    var(--color-rose-50),
+    var(--color-emerald-50),
     var(--color-emerald-950)
   );
   --color-success: var(--color-emerald-500);

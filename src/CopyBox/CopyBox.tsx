@@ -37,8 +37,7 @@ export default function CopyBox({ label, value }: Props): ReactNode {
           color={status === "idle" ? "default" : "success"}
           onClick={handleCopyButtonClick}
         >
-          {status === "idle" ? "Copy" : ""}
-          {status === "copied" && <MingcuteCheckFill />}
+          {status === "idle" ? "Copy" : <MingcuteCheckFill />}
         </Button>
       </div>
     </div>

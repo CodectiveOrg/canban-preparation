@@ -4,11 +4,10 @@ import { useNavigate } from "react-router";
 
 import { toast } from "react-toastify";
 
-import { randomApi } from "@/api/auth/random.api.ts";
+import { randomApi } from "@/api/auth/random-api.ts";
 
 import Button from "@/components/Button/Button.tsx";
-
-import RandomCredentials from "@/pages/SignUpPage/components/RandomCredentials/RandomCredentials.tsx";
+import RandomCredentials from "@/components/RandomCredentials/RandomCredentials.tsx";
 
 export default function RandomButton(): ReactNode {
   const navigate = useNavigate();

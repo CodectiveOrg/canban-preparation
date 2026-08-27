@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { signUpApi } from "@/api/auth/sign-up.api.ts";
+import { signUpApi } from "@/api/auth/sign-up-api.ts";
 
 import Button from "@/components/Button/Button.tsx";
 import TextInput from "@/components/TextInput/TextInput.tsx";

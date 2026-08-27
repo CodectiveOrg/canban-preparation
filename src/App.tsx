@@ -2,8 +2,8 @@ import { type ReactNode } from "react";
 
 import { Route, Routes } from "react-router";
 
-import GuestOnlyGuard from "@/guards/guest-only.guard.tsx";
-import SignedInOnlyGuard from "@/guards/signed-in-only.guard.tsx";
+import GuestOnlyGuard from "@/guards/GuestOnlyGuard.tsx";
+import SignedInOnlyGuard from "@/guards/SignedInOnlyGuard.tsx";
 
 import AuthLayout from "@/layouts/AuthLayout/AuthLayout.tsx";
 import RootLayout from "@/layouts/RootLayout/RootLayout.tsx";

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 
 import { toast } from "react-toastify";
 
-import { signOutApi } from "@/api/auth/sign-out.api.ts";
+import { signOutApi } from "@/api/auth/sign-out-api.ts";
 
 import SidebarItem from "@/components/Sidebar/components/SidebarItem/SidebarItem.tsx";
 
