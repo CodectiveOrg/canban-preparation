@@ -2,11 +2,14 @@ import { z } from "zod";
 
 import type { ResponseDto } from "@/dto/response-dto.ts";
 
+import { ChangePasswordSchema } from "@/schemas/change-password-schema.ts";
 import { IdentitySettingsSchema } from "@/schemas/identity-settings-schema.ts";
 
 import { richFetch } from "@/utils/fetch-utils.ts";
 
-export type UpdateUserRequestDto = z.infer<typeof IdentitySettingsSchema>;
+export type UpdateUserRequestDto =
+  | z.infer<typeof IdentitySettingsSchema>
+  | z.infer<typeof ChangePasswordSchema>;
 
 export async function updateUserApi(
   dto: UpdateUserRequestDto,
