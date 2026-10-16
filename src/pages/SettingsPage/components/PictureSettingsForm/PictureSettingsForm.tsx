@@ -11,7 +11,7 @@ import styles from "./PictureSettingsForm.module.css";
 type Props = {
   savedPicture: string | null;
   username: string;
-  onSubmit: () => Promise<void>;
+  onSubmit?: () => void;
 };
 
 export default function PictureSettingsForm({
@@ -27,7 +27,7 @@ export default function PictureSettingsForm({
     }
 
     toast.success(response.message);
-    await onSubmit();
+    onSubmit?.();
   };
 
   return (
