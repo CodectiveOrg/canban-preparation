@@ -6,6 +6,7 @@ import { getUserApi } from "@/api/user/get-user-api.ts";
 
 import ApiError from "@/components/ApiError/ApiError.tsx";
 import Loading from "@/components/Loading/Loading.tsx";
+import PictureSettingsForm from "@/pages/SettingsPage/components/PictureSettingsForm/PictureSettingsForm.tsx";
 
 import type { ResponseDto } from "@/dto/response-dto.ts";
 
@@ -46,7 +47,12 @@ export default function SettingsPage(): ReactNode {
   return (
     <div className={styles["settings-page"]}>
       <section>
-        <h2>Identity Settings</h2>
+        <h2>User Settings</h2>
+        <PictureSettingsForm
+          savedPicture={response.result.picture}
+          username={response.result.username}
+          onSubmit={reloadResponse}
+        />
         <IdentitySettingsForm
           defaultValues={{
             username: response.result.username,
