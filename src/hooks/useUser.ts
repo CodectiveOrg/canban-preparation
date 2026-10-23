@@ -38,7 +38,9 @@ export function useUser(): Result {
 
   useEffect(() => {
     const loadUser = (): void => {
-      getUserApi().then(setResponse);
+      getUserApi().then((response) => {
+        setResponse(response);
+      });
     };
 
     window.addEventListener("userupdate", loadUser);

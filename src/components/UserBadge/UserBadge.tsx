@@ -3,8 +3,8 @@ import { type ReactNode } from "react";
 import { toast } from "react-toastify";
 
 import ApiError from "@/components/ApiError/ApiError.tsx";
+import Avatar from "@/components/Avatar/Avatar.tsx";
 import Loading from "@/components/Loading/Loading.tsx";
-import Avatar from "@/components/Sidebar/components/Avatar/Avatar.tsx";
 import SidebarItem from "@/components/Sidebar/components/SidebarItem/SidebarItem.tsx";
 
 import { useUser } from "@/hooks/useUser.ts";

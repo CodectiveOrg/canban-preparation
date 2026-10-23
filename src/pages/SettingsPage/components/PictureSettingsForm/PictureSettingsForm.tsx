@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { toast } from "react-toastify";
 
@@ -35,9 +35,8 @@ export default function PictureSettingsForm({
       <PictureInput
         label="Profile Picture"
         hint="Upload a JPG or PNG image, up to 5 MB."
-        username={username}
         savedPicture={savedPicture}
-        accept="image/jpeg,image/png"
+        username={username}
         onChange={(e) => updatePicture(e.currentTarget.files?.[0] ?? "")}
         onRemove={() => updatePicture("")}
       />

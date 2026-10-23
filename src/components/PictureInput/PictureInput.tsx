@@ -2,8 +2,8 @@ import { type ComponentProps, type ReactNode, useId, useRef } from "react";
 
 import clsx from "clsx";
 
+import Avatar from "@/components/Avatar/Avatar.tsx";
 import Button from "@/components/Button/Button.tsx";
-import Avatar from "@/components/Sidebar/components/Avatar/Avatar.tsx";
 
 import MingcuteDelete2Line from "@/icons/MingcuteDelete2Line.tsx";
 
@@ -12,8 +12,8 @@ import styles from "./PictureInput.module.css";
 type Props = Omit<ComponentProps<"input">, "type"> & {
   label: string;
   hint: string;
-  username: string;
   savedPicture: string | null;
+  username: string;
   error?: string | null;
   onRemove: () => void;
 };
@@ -22,8 +22,8 @@ export default function PictureInput({
   className,
   label,
   hint,
-  username,
   savedPicture,
+  username,
   error,
   onRemove,
   ...otherProps

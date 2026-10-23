@@ -8,7 +8,7 @@ import IconButton from "@/components/IconButton/IconButton.tsx";
 import Logo from "@/components/Logo/Logo.tsx";
 import SidebarGroups from "@/components/Sidebar/components/SidebarGroups/SidebarGroups.tsx";
 import SignOutButton from "@/components/Sidebar/components/SignOutButton/SignOutButton.tsx";
-import UserBadge from "@/components/Sidebar/components/UserBadge/UserBadge.tsx";
+import UserBadge from "@/components/UserBadge/UserBadge.tsx";
 
 import MingcuteArrowsRightLine from "@/icons/MingcuteArrowsRightLine.tsx";
 
