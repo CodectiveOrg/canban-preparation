@@ -12,20 +12,21 @@ This skill is agent-agnostic. Use the repository inspection, Git, and file-editi
 
 ## Deliverable
 
-Create the repository-root `.script` directory and write exactly one Markdown file for each commit in the selected teaching range. Each file represents exactly one commit, in chronological order. Do not create an index, overview, or other non-commit file in `.script`.
+Create the repository-root `.prepare/.scripts` directory, creating `.prepare` if needed, and write exactly one Markdown file for each commit in the selected teaching range. Each file represents exactly one commit, in chronological order. Do not create an index, overview, or other non-commit file in `.prepare/.scripts`.
 
 Name files using a zero-padded sequential number, a lowercase kebab-case slug derived from the commit subject, and the `.md` extension. Use at least two digits, increasing the width only if the commit count needs more digits (for example, three digits for 100 or more commits). For example:
 
 ```text
-.script/
-  01-initial-project-setup.md
-  02-create-board-component.md
-  03-add-drag-and-drop.md
+.prepare/
+  .scripts/
+    01-initial-project-setup.md
+    02-create-board-component.md
+    03-add-drag-and-drop.md
 ```
 
 Use hyphens only as word separators in the slug; use lowercase ASCII letters and digits in slug words. Remove punctuation and symbols from commit subjects when creating slugs. Keep the `.md` extension. The numeric prefix, not the slug, determines ordering.
 
-If `.script` already exists, inspect its contents and preserve unrelated user files. Update only files that correspond to the selected commit range; do not delete unrelated files. Ensure the final output has the requested commit files without adding non-commit documents.
+If `.prepare/.scripts` already exists, inspect its contents and preserve unrelated user files. Update only files that correspond to the selected commit range; do not delete unrelated files. Ensure the final output has the requested commit files without adding non-commit documents.
 
 ## Safety and Scope
 
@@ -146,7 +147,7 @@ When practical, compare each documented operation with its actual parent-to-comm
 
 After generating and validating the files, report concisely:
 
-1. The `.script` folder path.
+1. The `.prepare/.scripts` folder path.
 2. The number of commit files written.
 3. The commit range, including first and last subjects or hashes.
 4. The checks performed and their actual outcome.

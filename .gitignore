@@ -26,4 +26,4 @@ dist-ssr
 .idea/
 .vscode/
 
-.script/
+.prepare/
