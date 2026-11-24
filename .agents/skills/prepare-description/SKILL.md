@@ -14,7 +14,7 @@ Create a ready-to-paste Persian YouTube description for a session in the React c
 2. Identify the session number from the user's request or the current branch/commit history. If it is unclear or conflicts with existing filenames, ask the user rather than guessing.
 3. Inspect the current branch's changes and relevant source files to determine what was actually implemented. Describe the tutorial content, not incidental maintenance fixes. Do not claim features that the branch does not demonstrate.
 4. Draft in the established format below. Keep the title short, interesting, and focused on the session's main goal. Match the conversational tone and phrasing of prior session questions. The fire list should name new concepts students will learn, not components or other implementation artifacts merely added to the project. Compare the draft with prior descriptions and replace generic or repeated questions/topics with distinct ones where appropriate.
-5. Return the final description in the chat and save that same finalized text as `.prepare/.descriptions/session-<number>.txt`. Do not overwrite an existing session description without the user's request.
+5. Return the final description in the chat and save that same finalized text as `.prepare/.descriptions/Session <number>.txt`, for example `Session 19.txt`. Do not overwrite an existing session description without the user's request.
 6. If the user corrects the style, apply the correction to the saved description and update these instructions when the preference should carry forward to future sessions. Never treat an unaccepted draft as an example.
 
 ## Required format

@@ -12,27 +12,25 @@ This skill is agent-agnostic. Use the repository inspection, Git, and file-editi
 
 ## Deliverable
 
-Create the repository-root `.prepare/.scripts` directory, creating `.prepare` if needed, and write exactly one Markdown file for each commit in the selected teaching range. Each file represents exactly one commit, in chronological order. Do not create an index, overview, or other non-commit file in `.prepare/.scripts`.
+Create `.prepare/.scripts/<session-branch>/` at the repository root, using the selected teaching branch name (for example, `session-19`). Write one Markdown file per commit in the selected range, in chronological order. The session folder holds only commit scripts.
 
-Name files using a zero-padded sequential number, a lowercase kebab-case slug derived from the commit subject, and the `.md` extension. Use at least two digits, increasing the width only if the commit count needs more digits (for example, three digits for 100 or more commits). For example:
+Start numbering at `01` for each session. Use a zero-padded sequential number, a lowercase kebab-case slug derived from the commit subject, and the `.md` extension. Use at least two digits, increasing the width only if the commit count needs more digits (for example, start at `001` for 100 or more commits).
 
 ```text
 .prepare/
   .scripts/
-    01-initial-project-setup.md
-    02-create-board-component.md
-    03-add-drag-and-drop.md
+    session-19/
+      01-add-board-list-and-item-api-clients.md
+      02-add-reusable-api-hook-for-user-data.md
 ```
 
 Use hyphens only as word separators in the slug; use lowercase ASCII letters and digits in slug words. Remove punctuation and symbols from commit subjects when creating slugs. Keep the `.md` extension. The numeric prefix, not the slug, determines ordering.
-
-If `.prepare/.scripts` already exists, inspect its contents and preserve unrelated user files. Update only files that correspond to the selected commit range; do not delete unrelated files. Ensure the final output has the requested commit files without adding non-commit documents.
 
 ## Safety and Scope
 
 - Inspect before editing. Do not change application source code, Git history, branches, tags, or commits.
 - Do not switch branches, reset the worktree, or otherwise disturb the checked-out state.
-- Do not overwrite uncommitted user work. If an existing target file contains unrelated content or the selected history cannot be established safely, stop and ask for clarification.
+- Preserve user-authored files and other sessions' folders. If a file in the target session folder cannot be identified as a generated commit script, stop and ask for clarification before replacing the scripts.
 - Do not invent code, filenames, or behavior. Report uncertainty and ask a focused question if historical evidence cannot resolve it.
 - Do not add unrelated refactoring, improvements, or production hardening.
 - Do not reproduce mistakes that were removed during history correction.
@@ -123,11 +121,11 @@ Code block rules:
 
 Never use ellipses to omit essential code. Preserve actual names, paths, imports, types, formatting, library choices, and intermediate implementations from the historical source. Keep all content in English.
 
-### 4. Validate Against History
+### 3. Validate Against History
 
 Audit the completed files against the selected commits. Check that:
 
-- There is exactly one output file per selected commit, with no omitted or duplicated commit.
+- The new set contains exactly one file per selected commit.
 - Numeric filename order matches chronological commit order.
 - Every file contains only numbered action items with code, and no headings, explanations, goals, results, commit metadata, or other commentary.
 - Every affected path and change is covered, including dependencies, configuration, renames, and deletions.
@@ -143,11 +141,15 @@ Audit the completed files against the selected commits. Check that:
 
 When practical, compare each documented operation with its actual parent-to-commit diff and inspect the historical file contents. Report any validation limitation rather than overstating confidence.
 
+### 4. Replace the Session Scripts
+
+After validating the new set, delete all previously generated step files in the target session folder, including files for commits that were renamed, reordered, or removed. Then write the new set. Keep cleanup within `.prepare/.scripts/<session-branch>/`. Verify that the folder contains exactly the new files.
+
 ## Completion Report
 
 After generating and validating the files, report concisely:
 
-1. The `.prepare/.scripts` folder path.
+1. The `.prepare/.scripts/<session-branch>/` folder path.
 2. The number of commit files written.
 3. The commit range, including first and last subjects or hashes.
 4. The checks performed and their actual outcome.
